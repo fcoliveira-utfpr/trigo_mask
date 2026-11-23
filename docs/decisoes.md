@@ -58,6 +58,32 @@ Cada decisão pode ser revista; a análise de sensibilidade indicada deve acompa
 
 **Consequência para o plano (recomendação adotada):** no Cerrado (S3/S4) os rótulos virão de (1) interpretação visual de pivôs da ANA com ciclo de inverno e de lavouras de sequeiro, (2) transferência a partir do S1 (E6) e (3) pontos de cooperativas e da Embrapa, se obtidos. A meta de amostras por estrato do passo 11 passa a valer também para trigo em S3 e S4.
 
+## Decisões da Etapa 3 (piloto de séries)
+
+| Data | Parâmetro | Valor adotado | Justificativa |
+|---|---|---|---|
+| 2026-11-23 | Safras-piloto | 2019 (S1A+S1B) e **2023** (só S1A, inverno muito chuvoso, quebra no RS/SC) em vez de 2022 | 2023 testa ao mesmo tempo H5 (nuvens) e E7 (estresse) |
+| 2026-11-23 | Amostra | até 1.500 trigo e 600 por confundidor (todas se houver menos), glebas aptas com ≥ 1 ha após o buffer, peso inverso ao nº de glebas do bloco de 50 km | Espalha a amostra no espaço |
+| 2026-11-23 | Cloud Score+ | `cs_cdf` ≥ 0,60; observação da gleba válida se ≥ 80% dos pixels válidos | §(iii) |
+| 2026-11-23 | Sentinel-1 no piloto | σ0 com máscara de borda (VV < −30 dB) e ângulo 31–45°, média linear por gleba, órbita dominante da gleba; sem correção de relevo | Variantes ficam para o E1 |
+| 2026-11-23 | Janela do ciclo de inverno (eq. 8) | plantio previsto − 15 a + 150 dias; mínimo pré-emergência a partir de plantio − 30 dias | Janela fixa abr–nov capturava o fim da cultura de verão (29% dos "picos" do trigo em abr–jun) |
+| 2026-11-23 | $t^{pico}_{ref}$ (eq. 8) | meio da janela de plantio prevista no SICOR + **65 dias**, τ = 30 dias | Pico observado: mediana de 59 dias após o plantio; 65 d maximiza a coerência (75,1% vs 64,1% com 80 d); referência por gleba, não por estrato |
+| 2026-11-23 | Fases (DAE), S1 | estabelecimento 0–20, perfilhamento 20–40, alongamento 40–55, espigamento 55–75, enchimento 75–95, maturação 95–125 | Trigo coerente 2019: pico ~50 DAE, maturação (eq. 26) ~105 DAE, colheita pelo radar ~138 DAE |
+| 2026-11-23 | κ (eq. 28) | 2 dB no piloto; **a recalibrar** (queda mediana de $R_{pol}$ na colheita ≈ 1,8 dB) | Detecção de só 56% das colheitas do trigo |
+
+## Resultados das Etapas 3 e 4 (piloto 2019, S1)
+
+- Séries de 4.225 glebas (S2: 259 mil observações; S1: 129 mil aquisições).
+- Coerência temporal (eq. 8): trigo 75%, cevada 79%, canola 73%, aveia 42%. Logo, cerca de 25% das glebas de trigo do SICOR não mostram o ciclo esperado (ruído de rótulo para o E8).
+- Validação independente: emergência detectada (eq. 26) − plantio previsto no SICOR = mediana de 11 dias (IQR −1 a 23).
+- A emergência do trigo vai de 5/mai a 14/jul (P10–P90): 70 dias de janela, o que confirma a necessidade de compósitos alinhados à emergência.
+- **2019 não foi limitado por nuvens**: 99,5% das glebas de trigo têm ≥ 3 observações ópticas válidas no espigamento e no enchimento.
+- Assinaturas do radar confirmadas: atenuação de VV no trigo em ago–set (mínimo ≈ −14,5 dB); canola com VH e $R_{pol}$ altos; queda abrupta de $R_{pol}$ na colheita (início de novembro).
+- J-M por fase isolada (óptico+radar, alinhado à emergência): trigo × cevada ≤ 0,62 em todas as fases; trigo × aveia de grão máx. 1,04 (espigamento, **não** a maturação); milho 2ª safra, canola e irrigadas > 1,8.
+- J-M com fases empilhadas (óptico+radar, 6 fases), **restrito aos mesmos blocos de 50 km**: cevada 1,69; aveia 1,86. Só óptico, 4 fases: cevada 1,12; aveia 1,51. O radar é decisivo para separar a cevada.
+- Alinhamento à emergência > calendário: J-M médio 1,23 vs 1,16 (a favor de H3).
+- **H2 revisada:** a aveia do SICOR é de grão/forragem e é colhida; a hipótese sobre a maturação vale para a aveia de **cobertura**, que precisa de amostras de interpretação visual.
+
 ## Verificações (§12.3)
 
 | Item | Situação | Observação |
