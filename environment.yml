@@ -1,0 +1,21 @@
+name: trigo
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - pandas
+  - pyarrow
+  - numpy
+  - requests
+  - geopandas
+  - shapely
+  - pyogrio
+  - matplotlib
+  - scikit-learn
+  - xgboost
+  - statsmodels
+  - jupyterlab
+  - earthengine-api
+  - geemap
+  - tqdm
+  - pip

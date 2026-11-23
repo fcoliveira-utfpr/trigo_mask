@@ -1,0 +1,10 @@
+# dados brutos e intermediários vão para GitHub Releases, não para o git
+dados/
+*.parquet
+*.gpkg
+*.zip
+*.tif
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+.env
