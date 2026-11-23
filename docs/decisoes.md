@@ -82,7 +82,32 @@ Cada decisão pode ser revista; a análise de sensibilidade indicada deve acompa
 - J-M por fase isolada (óptico+radar, alinhado à emergência): trigo × cevada ≤ 0,62 em todas as fases; trigo × aveia de grão máx. 1,04 (espigamento, **não** a maturação); milho 2ª safra, canola e irrigadas > 1,8.
 - J-M com fases empilhadas (óptico+radar, 6 fases), **restrito aos mesmos blocos de 50 km**: cevada 1,69; aveia 1,86. Só óptico, 4 fases: cevada 1,12; aveia 1,51. O radar é decisivo para separar a cevada.
 - Alinhamento à emergência > calendário: J-M médio 1,23 vs 1,16 (a favor de H3).
-- **H2 revisada:** a aveia do SICOR é de grão/forragem e é colhida; a hipótese sobre a maturação vale para a aveia de **cobertura**, que precisa de amostras de interpretação visual.
+- **Random Forest por gleba (C1a piloto), validação GroupKFold por blocos de 50 km, F1 do trigo:**
+  - óptico 6 fases 0,767; óptico+radar 6 fases 0,816 (**ganho do radar +0,05** mesmo em safra pouco nublada);
+  - + métricas fenológicas (datas de emergência, pico, maturação, colheita radar, amplitude) 0,823;
+  - + filtro de coerência (eq. 8) também nos confundidores de inverno: **0,848** (multiclasse) e 0,838 (binário);
+  - ranking das fases (isoladas): espigamento > alongamento > enchimento > perfilhamento > maturação > estabelecimento; a acumulação progressiva (MAP) estabiliza com 3 fases (0,80);
+  - com todas as fases, alinhar à emergência perde a informação de época (óptico: 0,767 emergência vs 0,793 calendário). Recomendação: compósitos alinhados **+ datas fenológicas** como variáveis.
+  - Confusões residuais: aveia → trigo e cevada → trigo (~120–150 glebas cada).
+- **Decisões derivadas:** (1) aplicar a eq. 8 a todas as classes de inverno; (2) treinar multiclasse e agregar em trigo/não trigo; (3) incluir datas fenológicas como variáveis.
+
+
+## Piloto 2023 e lacuna do Sentinel-1 (2022–2024)
+
+- **Sentinel-1 praticamente ausente no S1 em 2022–2024.** Aquisições IW VV+VH entre abril e novembro nos pontos das glebas de trigo da amostra: mediana 19–21 em 2017–2021, **0–1 em 2022–2024** (80% das glebas com < 5 aquisições) e 28 em 2025 (S1C). Após a falha do S1B, o S1A deixou de adquirir as órbitas 97, 24 e 126 sobre o Sul (2023: só órbitas 68 e 170 regulares).
+- **Consequências (decisões adotadas):**
+  - versão com radar do C1 apenas para 2017–2021 e 2025 em diante; 2022–2024 mapeados só com o óptico (como a retroação);
+  - o E5 "revisita de 6 × 12 dias" passa a ser "com radar × sem radar";
+  - a H5 não pode ser testada com nuvens reais em 2023; será testada por remoção artificial de fases ópticas em 2019, 2021 e 2025 (E10);
+  - a safra com estresse de 2023 (E7) será avaliada sem radar.
+- 2023: coerência do trigo 77%; 92% das glebas com ≥ 3 observações ópticas no espigamento + enchimento (3,1% com 0–1).
+- F1 do trigo, só óptico + fenologia: validação por blocos **dentro** de 2023 = 0,754 (2019: ~0,80).
+- **Transferência 2019 → 2023 (prévia do E5)**, só óptico + fenologia: emergência 0,693 (perda 0,061) × calendário 0,664 (perda 0,091). O alinhamento à emergência transfere melhor (a favor de H3), mas a perda ainda é > 0,05.
+- Recomendação: treinar com várias safras juntas e avaliar deixando uma safra de fora (leave-one-year-out); estender a extração de séries a 2017–2025.
+
+## H2 revisada
+
+A aveia do SICOR é de grão/forragem e é colhida; a hipótese sobre a maturação vale para a aveia de **cobertura**, que precisa de amostras de interpretação visual.
 
 ## Verificações (§12.3)
 
