@@ -119,3 +119,15 @@ A aveia do SICOR é de grão/forragem e é colhida; a hipótese sobre a maturaç
 | Datas de colheita para calibrar κ (eq. 28) | Parcial | Só a janela prevista; calibração principal pelas quedas de NDVI |
 | Comunicações de perda do Proagro por operação | Pendente | |
 | Earth Engine | Confirmado | Projeto `mapbiomas-brazil` inicializa |
+
+## Escopo geográfico (decisão de 2026-11-23)
+
+| Recorte | Área de trigo 2021–2025 | Situação |
+|---|---|---|
+| PR, RS, SC (estrato S1) | 88,0% (91,3% em 2000–2025) | **Escopo principal**: desenvolvimento, experimentos, validação e produtos |
+| SP, MG | ~9% (SP 177 mil ha, MG 139 mil ha em 2025) | Extensão opcional (fase 2): transferência do modelo do S1 (E6) + rótulos por interpretação visual |
+| MS, GO, DF, BA | ~3% (MS 29 mil ha em 2025) | Fora do escopo |
+
+- Motivo: 88% da área e praticamente todos os rótulos do SICOR (306 mil glebas de trigo no S1 contra ~1.200 nos demais) estão em PR, RS e SC. Incluir o MS acrescentaria só 1,2 p.p.; SP e MG têm mais área que o MS.
+- Os produtos passam a ser descritos como "trigo no Sul do Brasil (~88–91% da área nacional)". A área fora do recorte cresce (95 mil ha em 2010 → 365 mil ha em 2025) e deve ser informada nos produtos.
+- Consequência para o planejamento: a lacuna do "trigo tropical" (S3/S4) sai do artigo principal e volta apenas na fase 2. O domínio de mapeamento passa a ser o domínio da Etapa 1 restrito a PR, RS e SC.
